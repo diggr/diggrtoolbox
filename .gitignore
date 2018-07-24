@@ -3,3 +3,6 @@ __pycache__/
 *.py[cod]
 *.egg-info/*
 .pytest_cache
+
+# Sphinx Build Dir
+docs/_build
