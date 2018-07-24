@@ -16,10 +16,11 @@ class TreeExplore:
 
     def __init__(self, tree, tab_symbol=TAB_SYMBOL):
 
-        if not isinstance(tree, dict) or isinstance(tree, list):
+        if isinstance(tree, dict) or isinstance(tree, list):
+            self.tree = tree
+            self.tab_symbol = tab_symbol
+        else:
             raise TypeError("This only makes sense for lists and dicts.")
-        self.tree = tree
-        self.tab_symbol = tab_symbol
 
     def display(self, value, indent):
         print("".join([self.tab_symbol for i in range(indent)]), value)
@@ -75,13 +76,21 @@ class TreeExplore:
             r_occur = embedding_length
             if embedding_length > 50:
                 l_occur = embedding.find(term)
-                l_occur = embedding.rfind(term)
-                if l_occurence == r_occurence:
+                r_occur = embedding.rfind(term)
+
+                if l_occur == r_occur:
                     unique_in_embedding = True
+
                 if l_occur - 10 < 0:
                     l_occur = 0
+                else:
+                    l_occur -= 10
+
                 if r_occur + 10 > embedding_length:
                     r_occur = embedding_length
+                else:
+                    r_occur += 10
+
             result['embedding'] = embedding[l_occur:r_occur]
             result['unique_in_embedding'] = unique_in_embedding
         results.append(result)
@@ -145,6 +154,8 @@ class TreeExplore:
                                                    element)
                         continue
                 elif isinstance(term, float) or isinstance(term, int):
+                    continue
+                elif element is None:
                     continue
                 else:
                     raise TypeError("Encountered unsupported type at {}".format(route))
