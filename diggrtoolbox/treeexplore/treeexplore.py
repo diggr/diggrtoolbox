@@ -98,7 +98,12 @@ class TreeExplore:
             self.show_search_result(result)
         return results
 
-    def search(self, term, tree=None, route=None, results=None):
+    def search(self,
+               term,
+               tree=None,
+               route=None,
+               results=None,
+               show_results=True):
         """
         This function provides full text search for nested dicts/lists/both.
         It will return the path to every occasion of the term.
@@ -117,12 +122,14 @@ class TreeExplore:
         if isinstance(tree, dict):
             for key, value in tree.items():
                 if isinstance(value, dict) or isinstance(value, list):
-                    self.search(term, value, route+[key], results)
+                    self.search(term, value, route+[key], results, show_results)
                 if isinstance(term, int) or isinstance(term, float):
                     if term == key:
                         results = self.prepare_search_result(term,
-                                                   route+[key],
-                                                   results)
+                                                             route+[key],
+                                                             results,
+                                                             None,
+                                                             show_results)
                         continue
                 elif isinstance(term, str):
                     for element in [key, value]:
@@ -131,7 +138,8 @@ class TreeExplore:
                                 results = self.prepare_search_result(term,
                                                                      route+[key],
                                                                      results,
-                                                                     value)
+                                                                     value,
+                                                                     show_results)
                     continue
                 else:
                     raise TypeError("Encountered unsupported type at {}".format(route))
@@ -139,19 +147,22 @@ class TreeExplore:
         elif isinstance(tree, list):
             for e, element in enumerate(tree):
                 if isinstance(element, dict) or isinstance(element, list):
-                    self.search(term, element, route+[e], results)
+                    self.search(term, element, route+[e], results, show_results)
                 elif isinstance(element, int) or isinstance(element, float):
                     if term == element:
                         results = self.prepare_search_result(term,
-                                                   route+[e],
-                                                   results)
+                                                             route+[e],
+                                                             results,
+                                                             None,
+                                                             show_results)
                         continue
                 elif isinstance(term, str) and isinstance(element, str):
                     if term in element:
                         results = self.prepare_search_result(term,
-                                                   route+[e],
-                                                   results,
-                                                   element)
+                                                             route+[e],
+                                                             results,
+                                                             element,
+                                                             show_results)
                         continue
                 elif isinstance(term, float) or isinstance(term, int):
                     continue
@@ -166,6 +177,17 @@ class TreeExplore:
         # #     raise KeyError("Term '{}' was not found in the tree.".format(term))
         # else:
         return results
+
+    def quiet_search(self, term):
+        """
+        Wrapper for the search function to ease access to a nonprinting search
+        function.
+        """
+        return self.search(term,
+                           tree=None,
+                           route=None,
+                           results=None,
+                           show_results=False)
 
     def find(self, term):
         pass
