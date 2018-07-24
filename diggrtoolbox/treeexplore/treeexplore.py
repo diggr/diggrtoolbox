@@ -173,9 +173,6 @@ class TreeExplore:
         else:
             raise TypeError("Not a valid tree to search in.")
 
-        # # if len(results) == 0:
-        # #     raise KeyError("Term '{}' was not found in the tree.".format(term))
-        # else:
         return results
 
     def quiet_search(self, term):
