@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to diggrtoolbox's documentation!
-========================================
+Welcome to diggrtoolbox documentation!
+======================================
 
 diggrtoolbox is a collection of various loosely coupled or completely
 independent tools, which were developed during the first phase of the
@@ -20,6 +20,7 @@ data structures we encountered during this research project.
 
    readme
    installation
+   examples
    modules
 
 * :ref:`genindex`
