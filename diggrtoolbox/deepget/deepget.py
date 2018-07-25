@@ -15,12 +15,14 @@ def deepget(obj, keys):
     values from deeply nested dicts or lists. This is useful, if the just one
     specific value is needed, which is hidden in multiple hierarchies.
 
-    Example:
+    :Example:
 
-    KEY2 = ['data', 'raw', 'key2']
-    entry = {'data': {'raw': {'key1': 'value1', 'key2': 'value2'}}}
+        >>> ENTRY = {'data' : {'raw' : {'key1' : 'value1',
+                                        'key2': 'value2'}}}
+        >>> KEY2 = ['data', 'raw', 'key2']
+        >>> deepget(ENTRY, KEY2) == 'value2'
+        True
 
-    value_of_key2 = deepget(entry, KEY2)
     """
     def deeper(obj, keys):
         if len(keys) > 1:
