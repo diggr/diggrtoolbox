@@ -62,9 +62,24 @@ class ZipMultiAccess(ZipAccess):
     """
 
     def get(self, file_id):
+        """
+        Returns a specific object, which is not the base object.
+
+        :param file_id: Identifier of the object to be returned.
+        :type file_id: str
+        """
         for filename in self.z.namelist():
             if "/" in filename:
                 if file_id == filename.split("/")[1][:-len(self.file_ext)]:
                     return self.json(filename)
         else:
             raise ValueError("Item {} not found.".format(file_id))
+
+    def __getitem__(self, file_id):
+        """
+        Wrapper around get, to allow for more pythonic object access.
+
+        :param file_id: Identifier of the object to be returned.
+        :type file_id: str
+        """
+        return self.get(file_id)
