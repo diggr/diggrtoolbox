@@ -39,8 +39,7 @@ class ZipAccess:
 
 class ZipSingleAccess(ZipAccess):
     """
-    This class is meant to provide access to a single
-    JSON-file in a zipfile.
+    This class is meant to provide access to a single JSON-file in a zipfile.
     """
 
     def json(self):
@@ -59,6 +58,9 @@ class ZipMultiAccess(ZipAccess):
     """
     This class is meant to provide access to a Zip file containing
     one base json file and a folder with other json files extending the first
+
+    ZipMultiAccess provides a __getitem__ method to allow more easy access to
+    the contents.
     """
 
     def get(self, file_id):
