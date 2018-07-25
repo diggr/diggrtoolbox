@@ -6,16 +6,26 @@
 Welcome to diggrtoolbox's documentation!
 ========================================
 
+diggrtoolbox is a collection of various loosely coupled or completely
+independent tools, which were developed during the first phase of the
+diggr (databased infrastructure for global game culture research) project at
+the university library in Leipzig.
+
+The tools are mostly small helpers meant to ease the handling of data and
+data structures we encountered during this research project.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    readme
+   installation
    modules
 
-Indices and tables
-==================
-
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
+
+Authors, Copyright, License
+===========================
+
+*diggrtoolbox* was developed by F. Rämisch <raemisch@ub.uni-leipzig.de> and  P. Mühleder <muehleder@ub.uni-leipzig.de> in the `diggr project <https://diggr.link>`_. It is licensed under `GNU General Public License v3 <https://www.gnu.org/licenses/gpl-3.0.en.html>`_. Copyright is by `Universitätsbibliothek Leipzig <https://ub.uni-leipzig.de>`_, 2018.
