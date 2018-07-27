@@ -7,6 +7,54 @@ To demonstrate possible applications of the tools of the toolbox, this page will
 ZipSingleAccess
 ---------------
 
+Imagine you have a lot of data stored in one JSON-file. Often these files can be compressed to take a lot less space on your harddrive. When you want to work with the content of these files, of course you don't want to upack them first::
+
+    >>> import diggrtoolbox as dt
+    >>> z = ZipSingleAccess("data/compressed_file.zip")
+    >>> j = z.json()
+    >>> isinstance(j, dict)
+    True
+    >>> print(j.keys())
+    dict_keys(['id', 'data', 'raw'])
+
+ZipMultiAccess
+--------------
+
+
+Sometimes the data, you want so load from a file, which is bigger than the RAM you have. This is a problem, as it makes it impossible to work with files of this size without some tricks.
+
+In the natural sciences this problem is tackled by using HDF5, a special file format, allowing to partially load the file, and only serve the parts needed for the next computation step. Unfortunately, this file is not quite made to store tree like structures like nested dicts/lists.
+
+With ZipMultiAccess we make the first step into this direction. You save subtrees of your data in a subfolder, and then load it from the ZIP when you need it::
+
+    >>> import diggrtoolbox as dt
+    >>> z = ZipMultiAccess("data/compressed_files.zip")
+    >>> j = z.json()
+    >>> isinstance(j, list)
+    True
+    >>> len(j)
+    38386
+    >>> isinstance(j[0], dict)
+    True
+    >>> print(j[0].keys())
+    dict_keys(['id', 'data', 'raw', 'matches'])
+    >>> print(j[0]['matches'])
+    {'n_matches': 3}
+    >>> m1 = z.get(j[0]['id'])
+    >>> isinstance(m, list)
+    True
+    >>> len(m)
+    3
+
+In the above example we have a list of 38386 which we matched with other games from another database. The match data is huge, so putting all data into one file resulted in a big freeze, as the amount of memory required to hold put all information into one Python object was larger, than the amount the machine had available.
+
+All match data was put into separate files, in a subfolder *matches* and then referenced with the id in the filename. The name of the subfolder can be chosen arbitrarily.
+
+There are multiple ways of accessing the additional files::
+
+    >>> z[j[0]['id']] == z.get(j[0]['id'])
+    True
+
 TreeExplore
 -----------
 
@@ -14,13 +62,13 @@ The TreeExplore class provides easy access to nested dicts/list or combinations 
 
     >>> import diggrtoolbox as dt
     >>> test_dict = {'id' : 123456789,
-    >>>              'data' : {'name' : 'diggr project',
-    >>>                        'city' : 'Leipzig',
+    >>>              'data' : {'name': 'diggr project',
+    >>>                        'city': 'Leipzig',
     >>>                        'field': 'Video Game Culture'},
-    >>>              'references':[{'url' : 'http://diggr.link',
-    >>>                             'name' : 'diggr website'},
-    >>>                             {'url' : 'http://ub.uni-leipzig.de',
-    >>>                              'name' : 'UBL website'}]}
+    >>>              'references':[{'url': 'http://diggr.link',
+    >>>                             'name': 'diggr website'},
+    >>>                             {'url': 'http://ub.uni-leipzig.de',
+    >>>                              'name': 'UBL website'}]}
     >>> tree = dt.TreeExplore(test_dict)
     >>> results = tree.search("leipzig")
     Search-Term: leipzig

@@ -14,6 +14,8 @@ the university library in Leipzig.
 The tools are mostly small helpers meant to ease the handling of data and
 data structures we encountered during this research project.
 
+.. note:: The main development paradigm for this library was and is: Providing tools, which have few to no additional/external dependencies, especially no requirement for any services to be run in the network, e.g. elasticsearch, CouchDB, etc. It is a toolbox made for Digital Humanities Researchers who do not have access to a huge technical infrastructure.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
