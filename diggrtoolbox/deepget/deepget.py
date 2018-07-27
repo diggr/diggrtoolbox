@@ -17,12 +17,12 @@ def deepget(obj, keys):
 
     :Example:
 
-        >>> ENTRY = {'data' : {'raw' : {'key1' : 'value1',
-                                        'key2': 'value2'}}}
+        >>> import diggrtoolbox as dt
+        >>> ENTRY = {'data' : {'raw': {'key1': 'value1',
+                                       'key2': 'value2'}}}
         >>> KEY2 = ['data', 'raw', 'key2']
-        >>> deepget(ENTRY, KEY2) == 'value2'
+        >>> dt.deepget(ENTRY, KEY2) == 'value2'
         True
-
     """
     def deeper(obj, keys):
         if len(keys) > 1:
