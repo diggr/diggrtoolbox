@@ -110,7 +110,7 @@ class TreeExplore:
             tree = self.tree
         if isinstance(tree, dict):
             for key, value in tree.items():
-                self.display(key, indent)
+                self._display(key, indent)
                 if isinstance(value, dict) or isinstance(value, list):
                     self.show(value, indent+1)
         elif isinstance(tree, list):
@@ -139,19 +139,18 @@ class TreeExplore:
             else:
                 print()
 
-
     def _prepare_search_result(self,
-                              term,
-                              route,
-                              results,
-                              embedding=None,
-                              show_result=True):
+                               term,
+                               route,
+                               results,
+                               embedding=None,
+                               show_result=True):
         """
         Prepares the search, appends it to the results list and organizes the
         printing.
         """
         result = {'term': term,
-                  'route' : route}
+                  'route': route}
         if embedding:
             unique_in_embedding = False
             embedding_length = len(embedding)

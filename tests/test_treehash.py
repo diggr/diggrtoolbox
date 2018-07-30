@@ -7,9 +7,10 @@ from copy import deepcopy
 TESTDICT = {'key0': 'value0',
             'key1': 'value1',
             'key2': 'value2',
-            'key3': [0,1,2,3],
+            'key3': [0, 1, 2, 3],
             'key4': {'subkey0': 'subvalue0',
                      'subkey1': 'subvalue1'}}
+
 
 def test_deterministic():
     """

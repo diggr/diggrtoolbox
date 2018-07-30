@@ -27,11 +27,11 @@ TESTDICT = {'key0': 'value0',
                                       'sublistvalueelement7',
                                       'sublistvalueelement8'],
                       'sublistkey5': 'sublistvalue5',
-                      'sublistkey6' : 6},
-                      7,
-                      8,
-                      9],
-            'key8': [1,2,3,4]}
+                      'sublistkey6': 6},
+                     7,
+                     8,
+                     9],
+            'key8': [1, 2, 3, 4]}
 
 TESTDICT_NO_ID = TESTDICT.copy()
 TESTDICT_NO_ID.pop('key0')
@@ -48,6 +48,7 @@ FIND_HIDDEN_VALUE = (('sublistvalueelement5', ['key7', 1, 'sublistkey2', 2]),
                      ('complicated', ['key5', 3]),
                      ('sublistkey0', ['key7', 0, 'sublistkey0']),
                      (7, ['key7', 3]))
+
 
 def test_search():
     """

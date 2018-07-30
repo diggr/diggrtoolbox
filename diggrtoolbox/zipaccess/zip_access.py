@@ -70,6 +70,8 @@ class ZipMultiAccess(ZipAccess):
         :param file_id: Identifier of the object to be returned.
         :type file_id: str
         """
+        if not isinstance(file_id, str):
+            file_id = str(file_id)
         for filename in self.z.namelist():
             if "/" in filename:
                 if file_id == filename.split("/")[1][:-len(self.file_ext)]:
@@ -85,3 +87,28 @@ class ZipMultiAccess(ZipAccess):
         :type file_id: str
         """
         return self.get(file_id)
+
+
+class ZipListAccess:
+    """
+    Class to read a Zipfile.
+    """
+
+    def read_archive(self):
+        """
+        Reads archive zipfile and returns contents as list of dicts.
+        """
+        zipfilename = self.zipfilename
+        object_list = []
+
+        with zipfile.ZipFile(zipfilename) as zf:
+            for filename in zf.namelist():
+                with zf.open(filename) as f:
+                    data = f.read().decode("utf-8")
+                    object_list.append(json.loads(data))
+        return object_list
+
+    def __init__(self, zipfilename):
+
+        self.zipfilename = zipfilename
+        self.contents = self.read_archive()
