@@ -1,0 +1,4 @@
+setuptools==40.0.0
+pytest==3.6.3
+jsonschema==2.6.0
+pycassa==1.11.2
