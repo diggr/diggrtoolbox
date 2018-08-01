@@ -10,10 +10,11 @@ not the best idea.
 
 from .deepget import deepget
 from .treeexplore import TreeExplore, treehash
-from .zipaccess import ZipSingleAccess, ZipMultiAccess
+from .zipaccess import ZipSingleAccess, ZipMultiAccess, ZipListAccess
 
 __all__ = ['deepget',
            'TreeExplore',
            'treehash',
            'ZipSingleAccess',
-           'ZipMultiAccess']
+           'ZipMultiAccess',
+           'ZipListAccess']

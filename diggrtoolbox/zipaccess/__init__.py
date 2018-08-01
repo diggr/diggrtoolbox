@@ -1,4 +1,5 @@
-from .zip_access import ZipSingleAccess, ZipMultiAccess
+from .zip_access import ZipSingleAccess, ZipMultiAccess, ZipListAccess
 
 __all__ = ['ZipSingleAccess',
-           'ZipMultiAccess']
+           'ZipMultiAccess',
+           'ZipListAccess']

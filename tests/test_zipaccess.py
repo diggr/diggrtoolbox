@@ -65,3 +65,14 @@ def test_zipfile():
     assert TESTDATA == j
     assert z[1234] == SUBDATA_1
     assert z['1234'] == SUBDATA_1
+
+
+def test_list_zipfile():
+
+    z = dt.ZipListAccess(ZIPFILENAME)
+    
+    l = len([x for x in z])
+    assert l == len(TESTDATA) + 1
+
+    sub = z["subdata/1235.json"]
+    assert sub == SUBDATA_2
