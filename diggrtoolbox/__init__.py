@@ -11,6 +11,8 @@ not the best idea.
 from .deepget import deepget
 from .treeexplore import TreeExplore, treehash
 from .zipaccess import ZipSingleAccess, ZipMultiAccess, ZipListAccess
+from .standardize import remove_html, remove_bracketed_text, remove_punctuation, std_url, std
+
 
 __all__ = ['deepget',
            'TreeExplore',
