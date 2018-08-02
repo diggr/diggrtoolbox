@@ -61,8 +61,3 @@ def test_search():
             print(step, end=", ")
         print()
         assert path == results[0]['route']
-
-
-if __name__ == "__main__":
-    test_search()
-    # test_single()
