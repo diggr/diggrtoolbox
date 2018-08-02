@@ -94,27 +94,24 @@ class ZipListAccess(ZipAccess):
     Class to read a Zipfile.
     """
 
+    def __iter__(self):
+        """
+        Iterates through zip archive.
+        """
+        for filename in self.z.namelist():
+            with self.z.open(filename) as f:
+                data = f.read().decode("utf-8")
+                yield json.loads(data)
+
     def read_archive(self):
         """
         Reads archive zipfile and returns contents as list of dicts.
         """
         object_list = []
 
-        for filename in self.z.namelist():
-            with self.z.open(filename) as f:
-                data = f.read().decode("utf-8")
-                object_list.append(json.loads(data))
+        for data in self:
+            object_list.append(data)
         return object_list
-
-
-    def __iter__(self):
-        """
-        Iterates through zip archive.
-        """    
-        for filename in self.z.namelist():
-            with self.z.open(filename) as f:
-                data = f.read().decode("utf-8")
-                yield json.loads(data)
 
     def __getitem__(self, filename):
         """
