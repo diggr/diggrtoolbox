@@ -16,7 +16,6 @@ class ZipAccess:
     """
 
     def __init__(self, filename, file_ext=FILE_EXT):
-
         if zipfile.is_zipfile(filename):
             self.filename = filename
             self.z = zipfile.ZipFile(self.filename)
