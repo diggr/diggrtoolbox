@@ -8,7 +8,6 @@ import roman
 import re
 import string
 import os
-import pandas as pd
 
 __author__ = "Florian Rämisch and Peter Mühleder"
 __copyright = "Copyright 2017, Universitätsbibliothek Leipzig"
@@ -46,7 +45,7 @@ def load_series():
     with open(file_name) as f:
         series = f.readlines()
     return [ x.strip() for x in series ]
- 
+
 
 def remove_tm(a):
     """
@@ -64,7 +63,7 @@ def word_before_after(a, sep):
     word_before, word_after = "", ""
     if sep in a:
         word_before = a.split(str(sep))[0].strip().split(" ")[-1]
-        word_after = a.split(str(sep))[1].strip().split(" ")[0]    
+        word_after = a.split(str(sep))[1].strip().split(" ")[0]
     return word_before, word_after
 
 
@@ -74,9 +73,9 @@ def std(a):
     """
     if a:
         a = a.replace("The"," "). replace("・", " ").replace("THE", " ").replace("the", " ")
-        #remove punctuations     
+        #remove punctuations
         a = a.translate(PUNCT_TRANSTABLE)
-        #remove macrons 
+        #remove macrons
         a = a.replace("ō", "o").replace("Ō", "O").replace("ū", "u").replace("Ū", "U")
         a = a.replace("ou", "o").replace("Ou", "O").replace("uu", "u").replace("Uu", "U").replace("nb", "mb")
         #remove blanks, lower case, strip string
@@ -102,10 +101,10 @@ def _extract_roman_numerals(a):
     rv = [no[0] for no in rv ]
 
     numbers = []
-    
+
     for n in rv:
         position = _get_position(a, n)
-    
+
         numbers.append({
             "type": "roman",
             "value": float(roman.fromRoman(n)),
@@ -115,20 +114,20 @@ def _extract_roman_numerals(a):
     return numbers
 
 def _extract_numbers(a):
-    """ 
-    returns all numbers in string :a:, their position and value als float. 
+    """
+    returns all numbers in string :a:, their position and value als float.
     if number is identified as year, only the last two digits get set as value
     """
-    
+
     rv = NUMBERING_RE.findall(a)
 
     numbers = []
-    
+
     for n in rv:
 
         position = _get_position(a, n)
 
-        #check if year        
+        #check if year
         if len(n) == 4 and n[0] in "12" and "." not in n:
             ntype = "year"
             value = int(n[2:])
@@ -139,7 +138,7 @@ def _extract_numbers(a):
         else:
             ntype = "number"
             value = float(n)
-            
+
         numbers.append({
             "type": ntype,
             "value": value,
@@ -156,4 +155,3 @@ def extract_all_numbers(a):
     sorted_numbers = sorted(numbers, key=lambda x: -x["position"][1])
 
     return sorted_numbers
-

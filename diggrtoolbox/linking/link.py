@@ -4,7 +4,6 @@ link module for linking datasets
 """
 
 from itertools import product
-from tqdm import tqdm
 import random
 import Levenshtein as lev
 from .rules import *
@@ -49,7 +48,7 @@ def link_by_titles(titles_a,titles_b, rules=ALL_RULES):
     best_ratio = 0
     for a, b in product(titles_a, titles_b):
         a = _pre_processing(a)
-        b = _pre_processing(b)         
+        b = _pre_processing(b)
 
         if a and b:
             weights = [ rule(a,b) for rule in rules ]
@@ -57,5 +56,5 @@ def link_by_titles(titles_a,titles_b, rules=ALL_RULES):
             r = lev.ratio(std(a),std(b)) - sum(weights)
 
             if r > best_ratio: best_ratio = r
-    
+
     return best_ratio
