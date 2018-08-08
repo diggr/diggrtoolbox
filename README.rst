@@ -20,13 +20,12 @@ Components
 Authors
 -------
 
-* F. Rämisch <raemisch@ub.uni-leipzig.de>
-* P. Mühleder <muehleder@ub.uni-leipzig.de>
+F. Rämisch <raemisch@ub.uni-leipzig.de> and P. Mühleder <muehleder@ub.uni-leipzig.de>
 
 License
 -------
 
-* `GNU General Public License <https://www.gnu.org/licenses/gpl-3.0.en.html>`_.
+* `MIT License <https://opensource.org/licenses/MIT>`_.
 
 Copyright
 ---------
