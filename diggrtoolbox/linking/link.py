@@ -7,7 +7,7 @@ from itertools import product
 import random
 import Levenshtein as lev
 from .rules import *
-from .helpers import remove_tm, std, load_series
+from .helpers import remove_tm, std, load_series, remove_numbers
 from .config import *
 
 __author__ = "Florian Rämisch and Peter Mühleder"
@@ -53,7 +53,10 @@ def link_by_titles(titles_a,titles_b, rules=ALL_RULES):
         if a and b:
             weights = [ rule(a,b) for rule in rules ]
 
-            r = lev.ratio(std(a),std(b)) - sum(weights)
+            a_no_numbers = remove_numbers(a)
+            b_no_numbers = remove_numbers(b)
+
+            r = lev.ratio(std(a_no_numbers),std(b_no_numbers)) - sum(weights)
 
             if r > best_ratio: best_ratio = r
 

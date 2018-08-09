@@ -25,7 +25,22 @@ from diggrtoolbox.linking.config import *
             [
                 "Resident Evil",
                 "RE"
-            ], lev.ratio(std("Resident Evil 2"), std("Resident Evil")) - NUMBERING_WEIGHT),
+            ], 1 - NUMBERING_WEIGHT),
+        (
+            [
+                "FIFA 2015"
+            ], 
+            [
+                "Fifa '16",
+                "Fifa football 2016"
+            ], 1 - NUMBERING_WEIGHT),
+        (
+            [
+                "Resident Evil 2",
+            ], 
+            [
+                "Resident Evil II",
+            ], 1),
     ],    
 )
 def test_linking_by_titles(titles1, titles2, output):

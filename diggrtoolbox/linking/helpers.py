@@ -155,3 +155,11 @@ def extract_all_numbers(a):
     sorted_numbers = sorted(numbers, key=lambda x: -x["position"][1])
 
     return sorted_numbers
+
+
+def remove_numbers(a):
+    """ removes all numbers (arabic and roman) from string a """
+    a = NUMBERING_RE.sub("", a)
+    a = ROMAN_NUMERAL_RE.sub("",a)
+    a = re.sub(" +", " ", a)
+    return a.replace(" :", ":").strip()

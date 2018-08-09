@@ -34,3 +34,15 @@ def test_load_series():
     series = load_series()
     assert isinstance(series, list)
     assert "SIMPLE" in series
+
+# test removing numbers from string
+@pytest.mark.parametrize(
+    "test_input, expected_output",
+    [
+        ("Mario Party 2", "Mario Party"),
+        ("Call of Duty IV: Whatever", "Call of Duty: Whatever"),
+        ("Final Fantasy X/X-2", "Final Fantasy /-")
+    ]
+    )
+def test_remove_numbers(test_input, expected_output):
+    assert remove_numbers(test_input) == expected_output
