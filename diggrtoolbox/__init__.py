@@ -39,11 +39,11 @@ from .treeexplore import TreeExplore, treehash
 from .zipaccess import ZipSingleAccess, ZipMultiAccess, ZipListAccess
 from .standardize import remove_html, remove_bracketed_text, remove_punctuation, std_url, std
 from .platform_mapping import PlatformMapper
-from .linking import link_by_titles
+from .linking import match_titles
 
 __all__ = ['Configgr',
            'deepget',
-           'link_by_titles',
+           'match_titles',
            'PlatformMapper',
            'TreeExplore',
            'treehash',

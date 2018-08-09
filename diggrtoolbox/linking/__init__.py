@@ -1,1 +1,1 @@
-from .link import link_by_titles
+from .link import match_titles

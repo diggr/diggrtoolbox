@@ -37,7 +37,7 @@ def _pre_processing(a):
                 break
     return a.strip()
 
-def link_by_titles(titles_a,titles_b, rules=ALL_RULES):
+def match_titles(titles_a,titles_b, rules=ALL_RULES):
     """
     Returns match value for two lists of titles.
 
