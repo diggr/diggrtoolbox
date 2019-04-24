@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to diggrtoolbox documentation!
-======================================
+diggrtoolbox - be a diggr
+=========================
 
 diggrtoolbox is a collection of various loosely coupled or completely
 independent tools, which were developed during the first phase of the
@@ -15,6 +15,11 @@ The tools are mostly small helpers meant to ease the handling of data and
 data structures we encountered during this research project.
 
 .. note:: The main development paradigm for this library was and is: Providing tools, which have few to no additional/external dependencies, especially no requirement for any services to be run in the network, e.g. elasticsearch, CouchDB, etc. It is a toolbox made for Digital Humanities Researchers who do not have access to a huge technical infrastructure.
+
+Getting started
+===============
+
+
 
 .. toctree::
    :maxdepth: 2
