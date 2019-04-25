@@ -1,0 +1,12 @@
+{
+  "tests/test_configgr.py": true, 
+  "tests/test_deepget.py": true, 
+  "tests/test_linking/test_helpers.py": true, 
+  "tests/test_linking/test_linking.py": true, 
+  "tests/test_linking/test_rules.py": true, 
+  "tests/test_platform_mapper.py": true, 
+  "tests/test_standardize.py": true, 
+  "tests/test_treeexplore.py": true, 
+  "tests/test_treehash.py": true, 
+  "tests/test_zipaccess.py": true
+}
