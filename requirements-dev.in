@@ -1,2 +1,5 @@
 -r requirements.txt
 Sphinx==2.0.1
+pytest==4.4.1
+pytest-cov==2.8.1
+pip-tools==4.3.0

@@ -4,12 +4,15 @@
 #
 #    make update-requirements
 #
-certifi==2019.3.9         # via requests
+certifi==2019.11.28       # via requests
 chardet==3.0.4            # via requests
 idna==2.7                 # via requests
 jsonschema==2.6.0
 python_levenshtein==0.12.0
-pyyaml==5.1
+pyyaml==5.1.1
 requests==2.20.1
 roman==3.0
-urllib3==1.24.2           # via requests
+urllib3==1.24.3           # via requests
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
