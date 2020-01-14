@@ -9,7 +9,7 @@ License: GNU General Public License v3
 
 import inspect
 
-from yaml import load
+from yaml import safe_load
 
 
 class Configgr:
@@ -31,7 +31,7 @@ class Configgr:
         Opens the configuration file and stores its contents in the class.
         """
         with open(self.config_filename) as config_file:
-            for var, value in load(config_file).items():
+            for var, value in safe_load(config_file).items():
                 self.config[var] = value
 
     def _set_locals(self):
