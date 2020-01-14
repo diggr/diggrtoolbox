@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7.3-stretch
-      - image: circleci/python:3.8.1-stretch
+      - image: circleci/python:3.8.1-buster
     steps:
       - checkout
       - run:
