@@ -28,24 +28,16 @@ def teardown_module():
 
 
 @pytest.fixture
-def get_config_data():
+def config_data():
     """
     Wraps the opening of the zipfile as fixture.
     """
     return dt.Configgr(CONFIG_FILENAME)
 
 
-def test_configgr_init():
-    c = get_config_data()
-    assert isinstance(c, dt.Configgr)
+def test_configgr_init(config_data):
+    assert isinstance(config_data, dt.Configgr)
 
 
-def test_constant_overwrite():
-    c = get_config_data()
-    assert c['CONSTANT_1'] != CONSTANT_1
-
-
-# def test_constant_passthrough():
-#     c = get_config_data()
-#     print(c.config)
-#     assert c['CONSTANT_2'] == CONSTANT_2
+def test_constant_overwrite(config_data):
+    assert config_data['CONSTANT_1'] != CONSTANT_1

@@ -1,6 +1,6 @@
 import pytest
 import Levenshtein as lev
-from diggrtoolbox.linking import link_by_titles
+from diggrtoolbox.linking.link import match_titles
 from diggrtoolbox.linking.helpers import std
 from diggrtoolbox.linking.config import *
 
@@ -43,5 +43,5 @@ from diggrtoolbox.linking.config import *
             ], 1),
     ],    
 )
-def test_linking_by_titles(titles1, titles2, output):
-    assert link_by_titles(titles1, titles2) == output
+def match_titles(titles1, titles2, output):
+    assert match_titles(titles1, titles2) == output

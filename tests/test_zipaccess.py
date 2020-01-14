@@ -48,23 +48,22 @@ def teardown_module():
 
 
 @pytest.fixture
-def get_zipped_data():
+def zipped_data():
     """
     Wraps the opening of the zipfile as fixture.
     """
     return dt.ZipMultiAccess(ZIPFILENAME)
 
 
-def test_zipfile():
+def test_zipfile(zipped_data):
     """
     Test general opening and accessing functionality of the ZipMultiAccess
     class.
     """
-    z = get_zipped_data()
-    j = z.json()
+    j = zipped_data.json()
     assert TESTDATA == j
-    assert z[1234] == SUBDATA_1
-    assert z['1234'] == SUBDATA_1
+    assert zipped_data[1234] == SUBDATA_1
+    assert zipped_data['1234'] == SUBDATA_1
 
 
 def test_list_zipfile():
