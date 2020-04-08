@@ -6,11 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Python dependencies in a venv
+          name: Install dependencies in a venv
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install .
+            pip install poetry
+            poetry install 
+            poetry install -dev 
       - run: 
           name: Run tests
           command: |
