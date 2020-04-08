@@ -22,8 +22,8 @@ Components
 Authors
 -------
 
-* F. Rämisch <raemisch@ub.uni-leipzig.de> 
-* P. Mühleder <muehleder@ub.saw-leipzig.de>
+* Florian Rämisch <raemisch@ub.uni-leipzig.de> 
+* Peter Mühleder <muehleder@ub.saw-leipzig.de>
 
 License
 -------
