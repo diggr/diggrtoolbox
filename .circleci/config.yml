@@ -12,7 +12,6 @@ jobs:
             . venv/bin/activate
             pip install poetry
             poetry install 
-            poetry install -dev 
       - run: 
           name: Run tests
           command: |
