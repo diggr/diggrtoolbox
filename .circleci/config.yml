@@ -2,16 +2,16 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7.3-stretch
-      - image: circleci/python:3.8.1-buster
+      - image: circleci/python:3.8.2-buster
     steps:
       - checkout
       - run:
-          name: Install Python dependencies in a venv
+          name: Install dependencies in a venv
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements-dev.txt
+            pip install poetry
+            poetry install 
       - run: 
           name: Run tests
           command: |

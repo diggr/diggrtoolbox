@@ -8,3 +8,4 @@ __pycache__/
 .cache/
 # Sphinx Build Dir
 docs/_build
+dist
