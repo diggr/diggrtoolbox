@@ -4,6 +4,35 @@ Examples
 
 To demonstrate possible applications of the tools of the toolbox, this page will contain example use cases.
 
+UnifiedAPI / DiggrAPI
+---------------------
+
+This is the latest addition to the toolbox. It allows the user to have an easier access to the unifiedAPI without having to memorize addresses. You can set filters, select datasets, etc.
+
+The following will create an instance, and select the dataset mobygames. 
+
+
+    >>> from diggrtoolbox.unified_api import DiggrAPI
+    >>> d = DiggrAPI("http://localhost:6660).dataset("mobygames")
+
+If you now get() this, you will get a list of all ids.
+
+    >>> ids = d.get()
+
+Let's suppose you are interested in links. Apply a filter, and then iterate over all ids, and run your process
+
+    >>> d.filter("links")
+    >>> for id_ in ids:
+    >>>     data = d.item(id_).get()
+    >>>     # further processing
+
+To clean up the code a bit, you can get the result immediately after setting an item id (or slug), by initializing DiggrAPI with `get_on_item=True`. If the "magic" (i.e. filtering the content of the request instead of returning the raw response) does not fit your needs, you can also set `raw=True`.
+
+    >>> d = DiggrAPI("http://localhost:6660", get_on_item=True, raw=True)
+    >>> d.dataset("mobygames").filter("links")
+    >>> raw_data = d.item("id_")
+
+
 ZipSingleAccess
 ---------------
 

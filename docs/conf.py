@@ -90,7 +90,7 @@ html_theme_options = {
     "font_size": "14px",
     "page_width": "980px",
     "sidebar_width": "225px",
-    "logo": "diggrtoolbox_logo.svg",
+    "logo": "diggrtoolbox_logo.svg.png",
     "show_relbars": True}
 
 # Add any paths that contain custom static files (such as style sheets) here,
