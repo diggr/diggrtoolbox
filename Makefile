@@ -8,12 +8,22 @@ help:
 test: ## Run unittests
 	python -m pytest --cov=./ $(PYTEST_ARGS)
 
-.PHONY: develop
-develop: git-flow pip-sync pip-check ## Setup repository for development
-
 .PHONY: clean
 clean: ## Clean the project directory
 	rm -fr *.egg-info
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
+
+.PHONY: docs
+docs:
+	rm -f docs/diggrtoolbox.rst
+	rm -f docs/modules.rst
+	sphinx-apidoc -o docs diggrtoolbox
+	$(MAKE) -C docs clean
+	$(MAKE) -C docs html
+
+.PHONY: serve-docs
+serve-docs:
+	@cd docs/_build/html/ && python -m http.server && cd ../../..
+

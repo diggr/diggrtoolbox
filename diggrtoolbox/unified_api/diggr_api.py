@@ -3,6 +3,9 @@ import requests
 from collections import OrderedDict
 from requests.compat import urljoin
 
+MOBYGAMES = "mobygames"
+GAMEFAQS = "gamefaqs"
+MEDIAARTDB = "mediaartdb"
 
 class DiggrAPI:
     """
@@ -10,6 +13,10 @@ class DiggrAPI:
     On initialization you have to provide the address of your desired unified API endpoint.
     You can now set the dataset and filters, which are persistent until reset.
     This allows you to iterate over a dataset without having to apply a filter each time.
+
+    The get() method will do some magic to determine the correct way of creating the directory
+    string depending on the content and dataset selected. I.e. prepend a "/slug", if the identifier
+    is a slug and not an id, or replace slashes in gamefaqs ids.
 
     Example Usage:
 
@@ -25,12 +32,13 @@ class DiggrAPI:
         results.append(d.item(i))
     """
 
-    DATASETS = ("mobygames", "gamefaqs", "mediaartdb")
-    FILTERS = ("companies", "links")
+    DATASETS = (MOBYGAMES, GAMEFAQS, MEDIAARTDB)
+    FILTERS = ("companies", "links", "cluster")
 
-    def __init__(self, base_url, get_on_item=False):
+    def __init__(self, base_url, get_on_item=False, raw=False):
         self.base_url = base_url
         self.get_on_item = get_on_item
+        self.raw = raw
         self.session = requests.Session()
         self.query = OrderedDict([
             ("dataset", None),
@@ -45,13 +53,17 @@ class DiggrAPI:
         result = self.session.get(urljoin(self.base_url, self.directory))
         if result.ok:
             data = result.json()
-            if not query["item"]:
+
+            if self.raw:
+                return data
+
+            if not self.query["item"]:
                 return data["ids"]
             else:
                 if self.query["filter"] == "links":
                     return data["links"]
                 else:
-                    return data["entry"]
+                    return data.get("entry", None)
         else:
             raise RuntimeError("Malformed Request")
 
@@ -69,10 +81,17 @@ class DiggrAPI:
         Selects an item, can be given a numeric id or a slug.
         Returns self or the result of the query if get_on_item is set.
         """
-        if item.isdigit():
+        if isinstance(id_or_slug, int):
+            self.query["item"] = str(id_or_slug)
+        elif id_or_slug.isdigit():
             self.query["item"] = id_or_slug
         else:
-            self.query["item"] = f"slug/{id_or_slug}"
+            if self.query["dataset"] == MOBYGAMES:
+                self.query["item"] = f"slug/{id_or_slug}"
+            if self.query["dataset"] == GAMEFAQS:
+                self.query["item"] = id_or_slug.replace("/", "__")
+            else:
+                self.query["item"] = id_or_slug
         if self.get_on_item:
             return self.get()
         else:
