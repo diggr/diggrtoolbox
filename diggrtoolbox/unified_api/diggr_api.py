@@ -18,18 +18,18 @@ class DiggrAPI:
     string depending on the content and dataset selected. I.e. prepend a "/slug", if the identifier
     is a slug and not an id, or replace slashes in gamefaqs ids.
 
-    Example Usage:
+        :Example:
 
-    d = DiggrAPI("http://localhost:6660").dataset("mobygames").filter("companies")
-    result = d.item("1").get()
+        >>> d = DiggrAPI("http://localhost:6660").dataset("mobygames").filter("companies")
+        >>> result = d.item("1").get()
 
-    For the sake of readability you may want to execute the query immediately after the item is
-    set.
-    d = DiggrAPI("http://localhost:6660", get_on_item=True)
-    d.dataset("mobygames").filter("companies")
-    results = []
-    for i in range(10):
-        results.append(d.item(i))
+        For the sake of readability you may want to execute the query immediately after the item is set.
+
+        >>> d = DiggrAPI("http://localhost:6660", get_on_item=True)
+        >>> d.dataset("mobygames").filter("companies")
+        >>> results = []
+        >>> for i in range(10):
+        >>>     results.append(d.item(i))
     """
 
     DATASETS = (MOBYGAMES, GAMEFAQS, MEDIAARTDB)
