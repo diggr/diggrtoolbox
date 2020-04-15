@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "diggrtoolbox"
-version = "0.3"
+version = "0.4"
 description = "Collection of tools developed for global game culture analysis"
 authors = ["Florian Rämisch <raemisch@ub.uni-leipzig.de>", "Peter Mühleder <muehleder@saw-leipzig.de>"]
 license = "MIT"
